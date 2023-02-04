@@ -1,0 +1,235 @@
+{
+  "project_info": {
+    "project_number": "923678436265",
+    "firebase_url": "https://fmfortravels-default-rtdb.firebaseio.com",
+    "project_id": "fmfortravels",
+    "storage_bucket": "fmfortravels.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923678436265:android:d0c3b51decde566347f2b8",
+        "android_client_info": {
+          "package_name": "com.example.fm_accounting_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923678436265-a96k47lr9mbm67kk48in8ob2a6m6aur3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ9FKkdDfXsUBV7mN7EBhufNWQ9RsZQgA"
+        },
+        {
+          "current_key": "AIzaSyCl1tp4XtMdOb3ycIe6jCD499N928d8t4o"
+        },
+        {
+          "current_key": "AIzaSyBnmUfHHljQ-x6SolMCHHC6Yqeuv0VUpjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923678436265-a96k47lr9mbm67kk48in8ob2a6m6aur3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "923678436265-5vc0sduh9gh2bbhemg04l20pfi6k35nv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fmfortravels"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923678436265:android:a57f199c122131d047f2b8",
+        "android_client_info": {
+          "package_name": "com.fmfortravels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923678436265-gaif75tbnbtuvbutq41u052bv8nmku30.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fmfortravels",
+            "certificate_hash": "35b6765b5e00a89079d133a6df10833376088b00"
+          }
+        },
+        {
+          "client_id": "923678436265-mob8p269gikn83tuua29hd1mh10jrcs1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fmfortravels",
+            "certificate_hash": "03fd3fa189ec8c36c774183f8a26dbd6f77751cb"
+          }
+        },
+        {
+          "client_id": "923678436265-q8eudvniq0vetj0shsgebma9v2mcpc3p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fmfortravels",
+            "certificate_hash": "42fd80e60c7d2cf35a94488e1914ca3825d865c3"
+          }
+        },
+        {
+          "client_id": "923678436265-r9plj4sd2937duliogt9sdnibhr8a5mi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fmfortravels",
+            "certificate_hash": "01099a39647a8cf0e20b8f80661e2838e84e9c30"
+          }
+        },
+        {
+          "client_id": "923678436265-a96k47lr9mbm67kk48in8ob2a6m6aur3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ9FKkdDfXsUBV7mN7EBhufNWQ9RsZQgA"
+        },
+        {
+          "current_key": "AIzaSyCl1tp4XtMdOb3ycIe6jCD499N928d8t4o"
+        },
+        {
+          "current_key": "AIzaSyBnmUfHHljQ-x6SolMCHHC6Yqeuv0VUpjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923678436265-a96k47lr9mbm67kk48in8ob2a6m6aur3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "923678436265-5vc0sduh9gh2bbhemg04l20pfi6k35nv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fmfortravels"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923678436265:android:ac40050434ce8adf47f2b8",
+        "android_client_info": {
+          "package_name": "com.fmfortravels.cardriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923678436265-k1vv4h2cd0qornr9v8ujkqlt9va0qkbv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fmfortravels.cardriver",
+            "certificate_hash": "01099a39647a8cf0e20b8f80661e2838e84e9c30"
+          }
+        },
+        {
+          "client_id": "923678436265-a96k47lr9mbm67kk48in8ob2a6m6aur3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ9FKkdDfXsUBV7mN7EBhufNWQ9RsZQgA"
+        },
+        {
+          "current_key": "AIzaSyCl1tp4XtMdOb3ycIe6jCD499N928d8t4o"
+        },
+        {
+          "current_key": "AIzaSyBnmUfHHljQ-x6SolMCHHC6Yqeuv0VUpjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923678436265-a96k47lr9mbm67kk48in8ob2a6m6aur3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "923678436265-5vc0sduh9gh2bbhemg04l20pfi6k35nv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fmfortravels"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923678436265:android:5e0f4a059e278f1b47f2b8",
+        "android_client_info": {
+          "package_name": "com.fmfortravels.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923678436265-fj3te0s78pnsvrc6u6ejfqak9sllg03s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fmfortravels.driver",
+            "certificate_hash": "42fd80e60c7d2cf35a94488e1914ca3825d865c3"
+          }
+        },
+        {
+          "client_id": "923678436265-l6rdtqsfi346ru75a3m2o1ejtchdof5n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fmfortravels.driver",
+            "certificate_hash": "01099a39647a8cf0e20b8f80661e2838e84e9c30"
+          }
+        },
+        {
+          "client_id": "923678436265-a96k47lr9mbm67kk48in8ob2a6m6aur3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ9FKkdDfXsUBV7mN7EBhufNWQ9RsZQgA"
+        },
+        {
+          "current_key": "AIzaSyCl1tp4XtMdOb3ycIe6jCD499N928d8t4o"
+        },
+        {
+          "current_key": "AIzaSyBnmUfHHljQ-x6SolMCHHC6Yqeuv0VUpjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923678436265-a96k47lr9mbm67kk48in8ob2a6m6aur3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "923678436265-5vc0sduh9gh2bbhemg04l20pfi6k35nv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fmfortravels"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
