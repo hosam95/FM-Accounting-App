@@ -128,11 +128,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       _verifyPhoneNumber();
                     },
                   ),
+            SizedBox(height: 16),
             GestureDetector(
               onTap: () {
                 context.go("/login");
               },
-              child: new Text("Sign in"),
+              child: new Text("Sign in?"),
             ),
           ],
         ),
