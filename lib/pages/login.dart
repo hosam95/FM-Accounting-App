@@ -15,7 +15,6 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   String _phoneNumber = "";
-  String _name = "";
   String _verificationId = "";
   String _errorMessage = "";
   bool _isLoading = false;
