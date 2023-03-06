@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fm_accounting_app/components/accountant%20view/accountant_page.dart';
+import 'package:fm_accounting_app/components/add%20payment%20view/add_payment.dart';
+import 'package:fm_accounting_app/components/add%20payment%20view/search_page.dart';
 import 'package:fm_accounting_app/data/account.dart';
+import 'package:fm_accounting_app/pages/home_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,12 +11,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'Authentication.dart';
+import 'data/bus.dart';
+import 'data/driver.dart';
+import 'data/partition.dart';
 import 'firebase_options.dart';
-import 'pages/home_page.dart';
+import 'notifiers/organisation_notifier.dart';
 import 'loading_page.dart';
 import 'pages/login.dart';
 import 'pages/register.dart';
-import 'pages/profile.dart';
 
 bool shouldUseFirebaseEmulator = false;
 
@@ -43,36 +49,63 @@ final GoRouter _router = GoRouter(
       },
     ),
     GoRoute(
+      name: "login",
       path: '/login',
       builder: (BuildContext context, GoRouterState state) {
         return LoginPage();
       },
     ),
     GoRoute(
+      name: "register",
       path: '/register',
       builder: (BuildContext context, GoRouterState state) {
         return RegisterPage();
       },
     ),
     GoRoute(
+      name: "loading",
       path: '/loading',
       builder: (BuildContext context, GoRouterState state) {
-        return LoadingPage();
+        return const LoadingPage();
       },
     ),
     GoRoute(
-        path: '/home',
-        builder: (BuildContext context, GoRouterState state) {
-          return HomePageWidget();
-        },
-        routes: <RouteBase>[
-          GoRoute(
-            path: 'profile',
-            builder: (BuildContext context, GoRouterState state) {
-              return ProfilePage();
-            },
-          ),
-        ]),
+      name: "home",
+      path: '/home',
+      builder: (BuildContext context, GoRouterState state) {
+        return const HomePageWidget();
+      },
+      routes: <RouteBase>[
+        GoRoute(
+          name: "new-payment",
+          path: 'partition/new-payment',
+          builder: (BuildContext context, GoRouterState state) {
+            return const AddPaymentView();
+          },
+          routes: <RouteBase>[
+            GoRoute(
+              name: "search-page",
+              path: 'search',
+              builder: (context, state) {
+                return SearchPage(
+                  type: state.queryParams['type'],
+                );
+              },
+            )
+          ],
+        ),
+        GoRoute(
+          name: "accountant-page",
+          path: 'accountant-page',
+          builder: (context, state) {
+            return AccountantPage(
+              name: state.queryParams['name'],
+              phone: state.queryParams['phone'],
+            );
+          },
+        ),
+      ],
+    ),
   ],
 );
 
@@ -88,6 +121,29 @@ class MyApp extends StatelessWidget {
         Provider(
             create: (context) =>
                 Account(uid: "", name: "", phone: "", oIds: [])),
+        ChangeNotifierProvider(create: (context) => OrganisationNotifier()),
+        Provider(
+          create: (context) => Partition(
+              id: "",
+              name: "",
+              oId: Provider.of<OrganisationNotifier>(context, listen: false)
+                  .organisation
+                  .id),
+        ),
+        Provider(
+            create: (context) => Bus(
+                id: "",
+                imei: "",
+                oId: Provider.of<OrganisationNotifier>(context, listen: false)
+                    .organisation
+                    .id)),
+        Provider(
+            create: (context) => Driver(
+                id: "",
+                name: "",
+                oId: Provider.of<OrganisationNotifier>(context, listen: false)
+                    .organisation
+                    .id)),
       ],
       child: MaterialApp.router(
         routerConfig: _router,
