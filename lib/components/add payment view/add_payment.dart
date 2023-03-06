@@ -10,7 +10,6 @@ import 'package:fm_accounting_app/data/payment.dart';
 import 'package:fm_accounting_app/notifiers/organisation_notifier.dart';
 import 'package:provider/provider.dart';
 
-import 'add_payment_providers.dart';
 import 'driver_selector.dart';
 
 class AddPaymentView extends StatefulWidget {
