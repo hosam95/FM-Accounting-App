@@ -6,20 +6,25 @@ import 'package:date_time_picker/date_time_picker.dart';
 import '../../data/payment.dart';
 import '../payment_card.dart';
 
-class AccountantPage extends StatefulWidget {
+class SafeDetailsPage extends StatefulWidget {
   final String? name;
   final String? identifier;
-  const AccountantPage(
-      {required this.name, required this.identifier, super.key});
+  final String? type;
+  const SafeDetailsPage(
+      {required this.name,
+      required this.identifier,
+      required this.type,
+      super.key});
 
   @override
-  State<AccountantPage> createState() =>
-      _AccountantPageState(name: name, identifier: identifier);
+  State<SafeDetailsPage> createState() => _SafeDetailsPageState(
+      name: name, identifier: identifier, isDriver: type == 'driver');
 }
 
-class _AccountantPageState extends State<AccountantPage> {
+class _SafeDetailsPageState extends State<SafeDetailsPage> {
   final String? name;
   final String? identifier;
+  final bool isDriver;
   TextEditingController startController = TextEditingController();
   TextEditingController endController = TextEditingController();
   String start = '';
@@ -29,7 +34,8 @@ class _AccountantPageState extends State<AccountantPage> {
   bool showDurationView = false;
   bool isDisabled = false;
 
-  _AccountantPageState({required this.name, required this.identifier});
+  _SafeDetailsPageState(
+      {required this.name, required this.identifier, required this.isDriver});
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -41,6 +47,10 @@ class _AccountantPageState extends State<AccountantPage> {
     startController.text = start;
     endController.text = end;
 
+    if (isDriver) {
+      queryNotChecked = false;
+    }
+
     super.initState();
   }
 
@@ -49,7 +59,9 @@ class _AccountantPageState extends State<AccountantPage> {
     return Scaffold(
       backgroundColor: const Color(0xFFF1F4F8),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF4B39EF),
+        backgroundColor: isDriver
+            ? Color.fromARGB(255, 239, 190, 57)
+            : const Color(0xFF4B39EF),
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: const Icon(
@@ -101,8 +113,10 @@ class _AccountantPageState extends State<AccountantPage> {
                     child: Expanded(
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF4B39EF),
+                        decoration: BoxDecoration(
+                          color: isDriver
+                              ? Color.fromARGB(255, 239, 190, 57)
+                              : Color(0xFF4B39EF),
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 5,
@@ -369,7 +383,7 @@ class _AccountantPageState extends State<AccountantPage> {
           });
         },
         child: Container(
-          color: Color.fromARGB(0, 0, 0, 0),
+          color: const Color.fromARGB(0, 0, 0, 0),
           width: MediaQuery.of(context).size.width * 1,
           height: MediaQuery.of(context).size.height * 1,
         ),
@@ -463,7 +477,7 @@ class _AccountantPageState extends State<AccountantPage> {
           });
         },
         child: Container(
-          color: Color.fromARGB(0, 0, 0, 0),
+          color: const Color.fromARGB(0, 0, 0, 0),
           width: MediaQuery.of(context).size.width * 1,
           height: MediaQuery.of(context).size.height * 1,
         ),
@@ -476,7 +490,7 @@ class _AccountantPageState extends State<AccountantPage> {
           children: [
             Container(
               width: MediaQuery.of(context).size.width * 0.8,
-              height: 350,
+              height: isDriver ? 300 : 350,
               decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
@@ -591,26 +605,28 @@ class _AccountantPageState extends State<AccountantPage> {
                     ),
                     child: const Text("Today"),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        queryNotChecked = true;
-                        isDisabled = false;
-                        showDurationView = false;
-                      });
-                    },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(150, 37),
-                      backgroundColor: Colors.black,
-                    ),
-                    child: const Text(
-                      "Not Checked",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 248, 238, 177),
-                        decorationColor: Colors.amber,
-                      ),
-                    ),
-                  ),
+                  isDriver
+                      ? const SizedBox()
+                      : ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              queryNotChecked = true;
+                              isDisabled = false;
+                              showDurationView = false;
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(150, 37),
+                            backgroundColor: Colors.black,
+                          ),
+                          child: const Text(
+                            "Not Checked",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 248, 238, 177),
+                              decorationColor: Colors.amber,
+                            ),
+                          ),
+                        ),
                 ],
               ),
             ),
@@ -641,7 +657,7 @@ class _AccountantPageState extends State<AccountantPage> {
       return _firestore
           .collection("payments")
           .where("checked", isEqualTo: false)
-          .where("accountantId", isEqualTo: identifier)
+          .where(isDriver ? "driverId" : "accountantId", isEqualTo: identifier)
           .snapshots();
     }
 
@@ -651,7 +667,7 @@ class _AccountantPageState extends State<AccountantPage> {
             isGreaterThanOrEqualTo:
                 DateTime.parse(start).millisecondsSinceEpoch)
         .where("time", isLessThan: DateTime.parse(end).millisecondsSinceEpoch)
-        .where("accountantId", isEqualTo: identifier)
+        .where(isDriver ? "driverId" : "accountantId", isEqualTo: identifier)
         .snapshots();
   }
 }

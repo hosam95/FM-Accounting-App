@@ -58,6 +58,7 @@ class DriversView extends StatelessWidget {
                     itemBuilder: (context, index) => DriverCard(
                       snapshot.data?.docs[index].get("id") as String,
                       snapshot.data?.docs[index].get("name") as String,
+                      onTap: "go to driver-page",
                     ),
                   );
                 },

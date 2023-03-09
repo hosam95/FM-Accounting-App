@@ -32,6 +32,12 @@ class DriverCard extends StatelessWidget {
       "go to search-page": (BuildContext context) {
         context.goNamed("search-page", queryParams: {'type': "driver"});
       },
+      "go to driver-page": (BuildContext context) {
+        context.goNamed("driver-page", queryParams: {
+          'name': name,
+          'driverId': id,
+        });
+      },
     };
 
     return Padding(

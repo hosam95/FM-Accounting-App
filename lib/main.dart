@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fm_accounting_app/components/accountant%20view/accountant_page.dart';
+import 'package:fm_accounting_app/components/safe%20details/safe_details_page.dart';
 import 'package:fm_accounting_app/components/add%20payment%20view/add_payment.dart';
 import 'package:fm_accounting_app/components/add%20payment%20view/search_page.dart';
 import 'package:fm_accounting_app/data/account.dart';
@@ -98,9 +98,21 @@ final GoRouter _router = GoRouter(
           name: "accountant-page",
           path: 'accountant-page',
           builder: (context, state) {
-            return AccountantPage(
+            return SafeDetailsPage(
               name: state.queryParams['name'],
               identifier: state.queryParams['phone'],
+              type: 'accountant',
+            );
+          },
+        ),
+        GoRoute(
+          name: "driver-page",
+          path: 'driver-page',
+          builder: (context, state) {
+            return SafeDetailsPage(
+              name: state.queryParams['name'],
+              identifier: state.queryParams['driverId'],
+              type: 'driver',
             );
           },
         ),
