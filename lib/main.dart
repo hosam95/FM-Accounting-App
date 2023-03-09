@@ -100,7 +100,7 @@ final GoRouter _router = GoRouter(
           builder: (context, state) {
             return AccountantPage(
               name: state.queryParams['name'],
-              phone: state.queryParams['phone'],
+              identifier: state.queryParams['phone'],
             );
           },
         ),
