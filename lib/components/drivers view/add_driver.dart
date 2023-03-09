@@ -19,6 +19,7 @@ class _AddDriversCardState extends State<AddDriversCard> {
   String _idErrorMessage = "";
   String _nameErrorMessage = "";
   bool _isLoading = false;
+  bool isVisible = false;
 
   void _showError(String errorMessage) {
     setState(() {
@@ -29,6 +30,27 @@ class _AddDriversCardState extends State<AddDriversCard> {
 
   @override
   Widget build(BuildContext context) {
+    if (!isVisible) {
+      return Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(20, 40, 20, 0),
+        child: ElevatedButton(
+          onPressed: () {
+            setState(() {
+              isVisible = true;
+            });
+          },
+          style: ElevatedButton.styleFrom(
+              minimumSize: const Size(200, 25),
+              backgroundColor: Colors.blueAccent),
+          child: const Icon(
+            Icons.add,
+            weight: 30,
+            size: 30,
+          ),
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(10, 30, 10, 10),
       child: Container(
@@ -47,109 +69,125 @@ class _AddDriversCardState extends State<AddDriversCard> {
         ),
         child: Column(
           children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 5, 0),
-                child: TextFormField(
-                  controller: idController,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    labelText: 'Id',
-                    hintText: 'enter the driver Id',
-                    errorText: _idErrorMessage,
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 5, 0),
+              child: TextFormField(
+                controller: idController,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: 'Id',
+                  hintText: 'enter the driver Id',
+                  errorText: _idErrorMessage,
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
                     ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    errorBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    focusedErrorBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    filled: true,
-                    fillColor: const Color(0xFFFBF7F7),
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                  textAlign: TextAlign.start,
-                ),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-                child: TextFormField(
-                  controller: nameController,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    labelText: 'name',
-                    hintText: 'enter the driver name',
-                    errorText: _nameErrorMessage,
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
                     ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    errorBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    focusedErrorBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    filled: true,
-                    fillColor: const Color(0xFFFBF7F7),
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                  textAlign: TextAlign.start,
+                  errorBorder: UnderlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  focusedErrorBorder: UnderlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  filled: true,
+                  fillColor: const Color(0xFFFBF7F7),
                 ),
+                textAlign: TextAlign.start,
               ),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-              child: ElevatedButton(
-                onPressed: () {
-                  addBus();
-                },
-                child: _isLoading
-                    ? const CircularProgressIndicator(
-                        color: Color.fromARGB(0, 0, 0, 0),
-                        strokeWidth: 3,
-                      )
-                    : const Text('Add'),
+              child: TextFormField(
+                controller: nameController,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: 'name',
+                  hintText: 'enter the driver name',
+                  errorText: _nameErrorMessage,
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  errorBorder: UnderlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  focusedErrorBorder: UnderlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  filled: true,
+                  fillColor: const Color(0xFFFBF7F7),
+                ),
+                textAlign: TextAlign.start,
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    addDriver();
+                  },
+                  child: _isLoading
+                      ? const CircularProgressIndicator(
+                          color: Color.fromARGB(0, 0, 0, 0),
+                          strokeWidth: 3,
+                        )
+                      : const Text('Add'),
+                  style:
+                      ElevatedButton.styleFrom(minimumSize: const Size(70, 30)),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      isVisible = false;
+                    });
+                  },
+                  child: _isLoading
+                      ? const CircularProgressIndicator(
+                          color: Color.fromARGB(0, 0, 0, 0),
+                          strokeWidth: 3,
+                        )
+                      : const Text('Cancel'),
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(70, 30),
+                      backgroundColor: Colors.red),
+                ),
+              ],
             ),
           ],
         ),
@@ -157,8 +195,7 @@ class _AddDriversCardState extends State<AddDriversCard> {
     );
   }
 
-  void addBus() async {
-    print("start: ");
+  void addDriver() async {
     setState(() {
       _isLoading = true;
       _idErrorMessage = "";
@@ -192,8 +229,6 @@ class _AddDriversCardState extends State<AddDriversCard> {
         .where("id", isEqualTo: idController!.text)
         .where("oId", isEqualTo: oId)
         .get();
-
-    print(bus.docs);
 
     if (bus.size != 0) {
       setState(() {
