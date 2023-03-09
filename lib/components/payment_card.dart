@@ -11,7 +11,7 @@ class PaymentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var time = DateTime.fromMillisecondsSinceEpoch(payment.time);
     String formatedTime =
-        "${time.month}-${time.day} ${time.hour}:${time.minute}";
+        "${time.year}-${time.month}-${time.day}\n${time.hour % 12}:${time.minute} ${time.hour < 12 ? 'AM' : 'PM'}";
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 10, 5),
       child: InkWell(
@@ -74,7 +74,7 @@ class PaymentCard extends StatelessWidget {
                               payment.driverName,
                               style: const TextStyle(
                                 fontFamily: 'Lexend Deca',
-                                color: Color(0xFF090F13),
+                                color: Color.fromARGB(255, 0, 115, 255),
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -102,7 +102,7 @@ class PaymentCard extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             '${payment.amount.toString()} EGP',
