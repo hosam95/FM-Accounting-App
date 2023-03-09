@@ -46,76 +46,78 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(10, 30, 10, 10),
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: const Color(0xFFEFEBEB),
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 4,
-                    color: Color(0x33000000),
-                    offset: Offset(0, 5),
-                  )
-                ],
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: textController,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelText: _isDriver! ? 'Id' : 'Imei',
-                      hintText: _isDriver! ? 'enter Id' : 'enter Imai',
-                      errorText: _errorMessage,
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0x00000000),
-                          width: 1,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(10, 30, 10, 10),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEFEBEB),
+                  boxShadow: const [
+                    BoxShadow(
+                      blurRadius: 4,
+                      color: Color(0x33000000),
+                      offset: Offset(0, 5),
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: textController,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        labelText: _isDriver! ? 'Id' : 'Imei',
+                        hintText: _isDriver! ? 'enter Id' : 'enter Imai',
+                        errorText: _errorMessage,
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color(0x00000000),
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0x00000000),
-                          width: 1,
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color(0x00000000),
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      errorBorder: UnderlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0x00000000),
-                          width: 1,
+                        errorBorder: UnderlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color(0x00000000),
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      focusedErrorBorder: UnderlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0x00000000),
-                          width: 1,
+                        focusedErrorBorder: UnderlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color(0x00000000),
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        borderRadius: BorderRadius.circular(15),
+                        filled: true,
+                        fillColor: const Color(0xFFFBF7F7),
                       ),
-                      filled: true,
-                      fillColor: const Color(0xFFFBF7F7),
+                      textAlign: TextAlign.start,
+                      onChanged: (value) {
+                        setState(() {});
+                      },
                     ),
-                    textAlign: TextAlign.start,
-                    onChanged: (value) {
-                      setState(() {});
-                    },
-                  ),
-                  searchList(),
-                ],
+                    searchList(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -129,12 +131,15 @@ class _SearchPageState extends State<SearchPage> {
       stream: _firestore
           .collection(_isDriver! ? "drivers" : "buss")
           .where("oId", isEqualTo: oId)
-          /*.where(_isDriver! ? 'id' : 'imei',
+          .where(_isDriver! ? 'id' : 'imei',
               isGreaterThanOrEqualTo: textController!.text)
           .where(_isDriver! ? 'id' : 'imei',
-              isLessThan: textController!.text + 'z')*/
+              isLessThan: textController!.text + 'z')
           .snapshots(),
       builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        }
         if (!snapshot.hasData) {
           return const Padding(
             padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
@@ -155,11 +160,6 @@ class _SearchPageState extends State<SearchPage> {
               scrollDirection: Axis.vertical,
               itemCount: snapshot.data?.docs.length,
               itemBuilder: (context, index) {
-                if (!(snapshot.data?.docs[index].get(_isDriver! ? 'id' : 'imei')
-                        as String)
-                    .startsWith(textController?.text as Pattern)) {
-                  return const SizedBox();
-                }
                 return _isDriver!
                     ? DriverCard(
                         (snapshot.data?.docs[index].get("id") as String),
