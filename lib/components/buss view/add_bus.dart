@@ -117,7 +117,6 @@ class _AddBussCardState extends State<AddBussCard> {
   }
 
   void addBus() async {
-    print("start: ");
     setState(() {
       _isLoading = true;
       _errorMessage = "";
@@ -125,7 +124,6 @@ class _AddBussCardState extends State<AddBussCard> {
 
     if (textController?.text == "") {
       _showError("Imei field is required");
-      print("empty raised");
       return;
     }
 
@@ -138,8 +136,6 @@ class _AddBussCardState extends State<AddBussCard> {
         .where("imei", isEqualTo: textController!.text)
         .where("oId", isEqualTo: oId)
         .get();
-
-    print(bus.docs);
 
     if (bus.size != 0) {
       _showError("Bus already exists");
