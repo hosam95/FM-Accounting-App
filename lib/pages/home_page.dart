@@ -62,7 +62,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       body: <Widget>[
         networkCheck(const ProfilePage()),
         Container(
-          color: Color.fromARGB(255, 231, 229, 137),
+          color: Color.fromARGB(255, 108, 143, 219),
           alignment: Alignment.center,
           child: networkCheck(const UsersView()),
         ),
@@ -73,7 +73,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         ),
         networkCheck(const BussView()),
         Container(
-          color: Colors.blue,
+          color: Color.fromARGB(255, 252, 202, 102),
           alignment: Alignment.center,
           child: networkCheck(const DriversView()),
         ),
